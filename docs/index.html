@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人名片 | 张小枫</title>
+
+  <!-- 引入外部分离的样式文件（HTML 结构 与 CSS 样式 分离书写） -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ 名片卡片主体 ============ -->
+  <main class="card">
+
+    <!-- 圆形头像：
+         将 src 替换为你自己的头像图片即可，例如 "avatar.jpg"
+         若本地无图片，会展示下方提供的在线占位头像 -->
+    <img
+      class="avatar"
+      src="https://i.pravatar.cc/160?img=11"
+      alt="个人头像"
+    >
+
+    <!-- 姓名 -->
+    <h1 class="name">张小枫</h1>
+
+    <!-- 职位 -->
+    <p class="title">高级前端开发工程师</p>
+
+    <!-- 姓名与联系方式之间的分隔线 -->
+    <hr class="divider">
+
+    <!-- 联系方式列表 -->
+    <ul class="contact">
+      <li>
+        <span class="icon">📞</span>
+        <a href="tel:+8613800138000">138-0013-8000</a>
+      </li>
+      <li>
+        <span class="icon">✉️</span>
+        <a href="mailto:zhangxiaofeng@example.com">zhangxiaofeng@example.com</a>
+      </li>
+      <li>
+        <span class="icon">💬</span>
+        <span>微信：zhang_xiaofeng</span>
+      </li>
+    </ul>
+
+  </main>
+
+</body>
+</html>

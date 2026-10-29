@@ -1,0 +1,706 @@
+/* 页面基础色彩与字体 */
+:root {
+    color-scheme: light;
+    --gold: #c9a45c;
+    --gold-light: #e4c987;
+    --ink: #24231f;
+    --muted: #77736b;
+    --paper: #f7f5f0;
+    --serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+/* 页头品牌标识与导航 */
+.site-header {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    min-height: 88px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7.2%;
+    background: #fff;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-mark {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 23px;
+}
+
+.brand-copy {
+    display: grid;
+    gap: 4px;
+}
+
+.brand-title,
+.footer-brand {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.brand-title span,
+.footer-brand span {
+    color: var(--gold);
+}
+
+.brand-subtitle {
+    color: #99958c;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+}
+
+.nav-link {
+    position: relative;
+    padding: 12px 0;
+    color: #55524c;
+    font-size: 14px;
+    transition: color 180ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #a77c31;
+}
+
+.nav-link.active::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    content: "";
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* 首页全屏主视觉与三张轮播照片 */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 88px);
+    min-height: calc(100svh - 88px);
+    overflow: hidden;
+    background: #39352e;
+    color: #fff;
+}
+
+.hero-slides,
+.hero-slide,
+.slide-shade {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-slide {
+    display: flex;
+    align-items: center;
+    padding: 0 12%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transform: scale(1.025);
+    transition: opacity 800ms ease, transform 5s ease;
+    pointer-events: none;
+}
+
+.hero-slide:nth-child(1) {
+    background-image: url("images/OIP-C.jpg");
+}
+
+.hero-slide:nth-child(2) {
+    background-image: url("images/OIP-C.webp");
+}
+
+.hero-slide:nth-child(3) {
+    background-image: url("images/v2-634e83761ae089dd4e3e930c845d6dde_720w.png");
+}
+
+.hero-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.slide-shade {
+    background: linear-gradient(90deg, rgba(20, 19, 17, .7), rgba(20, 19, 17, .18) 68%, rgba(20, 19, 17, .08));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    padding-bottom: 32px;
+}
+
+.eyebrow,
+.section-kicker {
+    margin: 0 0 20px;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+.hero-content h1,
+.hero-content h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(42px, 6.4vw, 76px);
+    font-weight: 500;
+    letter-spacing: 5px;
+    line-height: 1.24;
+}
+
+.hero-description {
+    margin: 22px 0 35px;
+    color: rgba(255, 255, 255, .82);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.gold-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 25px;
+    padding: 0 22px;
+    border: 1px solid rgba(228, 201, 135, .8);
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: background 180ms ease, color 180ms ease;
+}
+
+.gold-button:hover {
+    background: var(--gold-light);
+    color: #29251d;
+}
+
+.gold-button span {
+    color: var(--gold-light);
+    font-size: 18px;
+}
+
+.gold-button:hover span {
+    color: #29251d;
+}
+
+.slide-index {
+    position: absolute;
+    right: 12%;
+    bottom: 62px;
+    z-index: 1;
+    color: var(--gold-light);
+    font-family: var(--serif);
+    font-size: 26px;
+    letter-spacing: 2px;
+}
+
+.slide-index i {
+    color: rgba(255, 255, 255, .65);
+    font-size: 13px;
+    font-style: normal;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 55px;
+    left: 12%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.carousel-arrow,
+.carousel-dot {
+    display: grid;
+    padding: 0;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carousel-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 20px;
+    height: 20px;
+}
+
+.carousel-dot::after {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .6);
+    content: "";
+    transition: width 180ms ease, border-radius 180ms ease, background 180ms ease;
+}
+
+.carousel-dot.is-active::after {
+    width: 18px;
+    border-radius: 4px;
+    background: var(--gold-light);
+}
+
+.hero-caption {
+    position: absolute;
+    top: 50%;
+    right: 36px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 9px;
+    letter-spacing: 3px;
+    writing-mode: vertical-rl;
+}
+
+/* 视频展示区与城市介绍 */
+.section-shell {
+    width: min(1100px, 82%);
+    margin: 0 auto;
+}
+
+.video-section {
+    padding-top: 105px;
+    padding-bottom: 110px;
+}
+
+.section-heading {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.section-heading .section-kicker,
+.story-copy .section-kicker {
+    margin-bottom: 12px;
+    color: #ae8842;
+}
+
+.section-heading h2 {
+    margin: 0 0 12px;
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.section-heading h2 span {
+    color: var(--gold);
+}
+
+.section-heading > p:last-child {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.video-player {
+    display: block;
+    width: 100%;
+    height: clamp(260px, 48vw, 520px);
+    overflow: hidden;
+    background: #35332f;
+    object-fit: cover;
+}
+
+.video-note {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center;
+}
+
+.story-section {
+    position: relative;
+    overflow: hidden;
+    background: #efede6;
+}
+
+.story-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 55px;
+    padding-top: 88px;
+    padding-bottom: 96px;
+}
+
+.story-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding-top: 5px;
+    color: #a78a54;
+    font-size: 9px;
+    letter-spacing: 2px;
+    line-height: 1.8;
+}
+
+.story-number {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 28px;
+}
+
+.story-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+}
+
+.story-copy h2 {
+    margin: 0 0 24px;
+    font-family: var(--serif);
+    font-size: clamp(26px, 3.4vw, 38px);
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.story-copy > p:not(.section-kicker) {
+    margin: 0;
+    color: #666158;
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 2.2;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 27px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--gold);
+    color: #8d6b30;
+    font-size: 13px;
+}
+
+.story-stamp {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    display: grid;
+    width: 120px;
+    height: 120px;
+    align-content: center;
+    justify-items: center;
+    border: 1px solid rgba(181, 143, 71, .35);
+    border-radius: 50%;
+    color: rgba(181, 143, 71, .55);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.5;
+    transform: rotate(-12deg);
+}
+
+.story-stamp::after {
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(181, 143, 71, .25);
+    border-radius: 50%;
+    content: "";
+}
+
+/* 首页主题入口卡片与页尾 */
+.discover-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding-top: 72px;
+    padding-bottom: 82px;
+}
+
+.discover-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px 20px;
+    border: 1px solid #e7e1d5;
+    background: rgba(255, 255, 255, .55);
+    transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.discover-card:hover {
+    border-color: var(--gold);
+    background: #fff;
+    transform: translateY(-4px);
+}
+
+.discover-number {
+    color: #a38a59;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.discover-card h3 {
+    margin: 22px 0 8px;
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.discover-card p {
+    max-width: 190px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.discover-arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: var(--gold);
+}
+
+.site-footer {
+    display: flex;
+    min-height: 155px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25231f;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-brand {
+    font-size: 18px;
+}
+
+.site-footer p {
+    margin: 0;
+    color: #c5c0b5;
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.site-footer small {
+    margin-top: 4px;
+    color: #817d74;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* 平板与手机端导航和内容适配 */
+@media (max-width: 760px) {
+    .site-header {
+        min-height: 72px;
+        padding: 0 6%;
+    }
+
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .brand-title {
+        font-size: 18px;
+    }
+
+    .menu-toggle {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        align-content: center;
+        justify-items: center;
+        gap: 5px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 1px;
+        background: #37332c;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 6% 14px;
+        background: #fff;
+        box-shadow: 0 12px 16px rgba(0, 0, 0, .08);
+    }
+
+    .main-nav.is-open {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-link {
+        padding: 12px 0;
+    }
+
+    .nav-link.active::after {
+        right: auto;
+        bottom: 5px;
+        width: 24px;
+    }
+
+    .hero {
+        min-height: calc(100vh - 72px);
+        min-height: calc(100svh - 72px);
+    }
+
+    .hero-slide {
+        padding: 0 8%;
+        background-position: 58% center;
+    }
+
+    .hero-content h1,
+    .hero-content h2 {
+        font-size: clamp(36px, 9vw, 58px);
+        letter-spacing: 2px;
+    }
+
+    .hero-description {
+        max-width: 290px;
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .carousel-controls {
+        bottom: 35px;
+        left: 7%;
+    }
+
+    .slide-index {
+        right: 8%;
+        bottom: 40px;
+    }
+
+    .hero-caption {
+        right: 14px;
+    }
+
+    .section-shell {
+        width: 86%;
+    }
+
+    .video-section {
+        padding-top: 72px;
+        padding-bottom: 74px;
+    }
+
+    .video-player {
+        height: 300px;
+    }
+
+    .story-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 65px;
+        padding-bottom: 70px;
+    }
+
+    .story-copy > p:not(.section-kicker) {
+        font-size: 13px;
+    }
+
+    .story-stamp {
+        right: 0;
+        bottom: 18px;
+        width: 88px;
+        height: 88px;
+        font-size: 14px;
+    }
+
+    .discover-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding-top: 50px;
+        padding-bottom: 55px;
+    }
+
+    .discover-card {
+        min-height: 180px;
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .discover-card {
+        min-height: 195px;
+    }
+}
+
+/* 遵循用户系统的减少动态效果偏好 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}

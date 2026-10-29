@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动框架应用</title>
+    <Style type="text/css">
+        *{margin:0;padding:0;box-sizing:border-box;}
+body{background:#fff;}
+/* 最外层容器，控制整体大小、居中、绿色背景 */
+.wrap{
+    width: 800px;
+    margin: 20px auto;    /* 上下外边距20px，左右auto实现居中 */
+    background-color:#26bb9c; /* 页面绿色背景，匹配效果图 */
+    padding:10px;
+}
+/* 页面标题样式 */
+h2{
+    text-align:center;    /* 文字居中 */
+    color:#fff;           /* 白色文字 */
+    margin-bottom:10px;
+}
+/* 滚动外容器：设置高度，隐藏超出图片，上下红色边框线 */
+.scroll-box{
+    width:100%;
+    height:120px;
+    overflow:hidden;       /* 溢出内容隐藏，只显示可视区域 */
+    border-top:2px solid red;    /* 上方红色分隔线 */
+    border-bottom:2px solid red; /* 下方红色分隔线 */
+}
+/* 图片列表容器，弹性布局横向排列图片 */
+.scroll-list{
+    display:flex;
+    height:100%;
+    align-items:center;    /* 图片垂直居中 */
+    white-space:nowrap;
+}
+/* 缩略图样式 */
+.scroll-list img{
+    width:100px;
+    height:80px;
+    margin:0 5px;          /* 图片左右间距 */
+    cursor:pointer;        /* 鼠标悬浮变成手型，提示可点击 */
+}
+/* 底部展示大图的iframe浮动框架 */
+#showImg{
+    width:80%;
+    height:450px;
+    margin:20px auto;      /* 上下外边距，左右居中 */
+    display:block;
+    border:none;
+    </Style>
+</head>
+<body>
+    <div class="wrap">
+    <h2>简易灯箱画廊设计</h2>
+
+    <!-- 滚动区域容器 -->
+    <div class="scroll-box" id="scrollBox">
+        <!-- 图片滚动列表 -->
+        <div class="scroll-list" id="scrollList">
+            <!-- T1-T7缩略图，a标签超链接 target="frame" 指定在名为frame的iframe打开大图 -->
+            <a href=" " target="frame">< img src="images/t1.jpg" alt="T1"></a >
+            <a href="images/t2.jpg" target="frame">< img src="images/t2.jpg" alt="T2"></a >
+            <a href="images/t3.jpg" target="frame">< img src="images/t3.jpg" alt="T3"></a >
+            <a href="images/t4.jpg" target="frame">< img src="images/t4.jpg" alt="T4"></a >
+            <a href="images/t5.jpg" target="frame">< img src="images/t5.jpg" alt="T5"></a >
+            <a href="images/t6.jpg" target="frame">< img src="images/t6.jpg" alt="T6"></a >
+            <a href="images/t7.jpg" target="frame">< img src="images/t7.jpg" alt="T7"></a >
+            <!-- 复制一遍图片，用来实现无缝循环滚动效果 -->
+            <a href="images/t1.jpg" target="frame">< img src="images/t1.jpg" alt="T1"></a >
+            <a href="images/t2.jpg" target="frame">< img src="images/t2.jpg" alt="T2"></a >
+            <a href="images/t3.jpg" target="frame">< img src="images/t3.jpg" alt="T3"></a >
+            <a href="images/t4.jpg" target="frame">< img src="images/t4.jpg" alt="T4"></a >
+            <a href="images/t5.jpg" target="frame">< img src="images/t5.jpg" alt="T5"></a >
+            <a href="images/t6.jpg" target="frame">< img src="images/t6.jpg" alt="T6"></a >
+            <a href="images/t7.jpg" target="frame">< img src="images/t7.jpg" alt="T7"></a >
+        </div>
+    </div>
+
+    <!-- 浮动框架iframe，name="frame"，接收a标签跳转，用来展示大图 -->
+    <iframe id="bigImg" src="images/t1.jpg" alt"展示大图"></iframe>
+</div>
+<script>
+// 获取滚动外框和图片列表DOM元素
+const scrollBox = document.getElementById('scrollBox');
+const scrollList = document.getElementById('scrollList');
+let speed = 1;   // 滚动速度，数值越大滚动越快
+let timer;       // 定时器变量，用来保存滚动定时器
+
+// 滚动函数：控制图片向左移动
+function scrollMove(){
+    // 判断：滚动距离超过一半列表宽度，重置滚动位置，实现无缝循环
+    if(scrollBox.scrollLeft >= scrollList.offsetWidth / 2){
+        scrollBox.scrollLeft = 0;
+    }else{
+        scrollBox.scrollLeft += speed; // 滚动位置自增，向左移动
+    }
+}
+// 开启定时器，每隔20ms执行一次滚动函数，启动自动滚动
+timer = setInterval(scrollMove, 20);
+
+// 鼠标移入滚动区域事件：清除定时器，停止滚动
+scrollBox.onmouseover = function(){
+    clearInterval(timer);
+}
+// 鼠标移出滚动区域事件：重新开启定时器，继续滚动
+scrollBox.onmouseout = function(){
+    timer = setInterval(scrollMove, 20);
+}
+</script>
+</body>
+</html>
